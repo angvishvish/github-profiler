@@ -10,8 +10,9 @@ window.onload = function() {
     eve.preventDefault();
     if (user === '') { return false; }
     $('.git-user-image').show();
+    userimage.setAttribute('src', 'img/loading.gif');
     var url = 'https://api.github.com/users/' + user;
-    
+
     $.ajax({
       type: 'GET',
       url: url
