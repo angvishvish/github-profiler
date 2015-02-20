@@ -15,7 +15,7 @@ angular.module('angularApp.github', [
   '$resource',
   function ($resource) {
     var apiURL = 'https://api.github.com';
-    var accessToken = '0cfc54a2a385a93ce5f5c47ac99c08c2cecb5118';
+    var accessToken = '--';
     var config = {
       getuser: {
         method: 'GET',
