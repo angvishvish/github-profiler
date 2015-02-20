@@ -1,0 +1,45 @@
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+
+      <div class="well col-md-4">
+        <div class="form-group">
+          <input class="form-control"
+                 type="text"
+                 placeholder="Enter username"
+                 ng-model="requestedUsername"
+                 autofocus>
+        </div>
+        <button class="btn btn-primary btn-block"
+                ng-click="doSearch(requestedUsername)">Search</button>
+        <img src="" alt="" class="img-responsive">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+
+          <div class="col-md-2 col-xs-4">
+            <img src="{{ userData.avatar_url }}" alt="{{ userData.name }}" class="img-responsive img-circle">
+          </div>
+
+          <div class="col-md-10 col-xs-8">
+            <div class="row form-group">
+              <label class="control-label">{{ userData.name }}</label>
+            </div>
+            <div class="row form-group">
+              <label class="col-md-6 control-label">{{ userData.following }} - Following</label>
+              <label class="col-md-6 control-label">{{ userData.followers }} - Followers</label>
+            </div>
+          </div>
+
+          <div class="col-m-12">
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
