@@ -20,7 +20,13 @@ angular.module('angularApp.github', [
       getuser: {
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + accessToken }
-      }
+      },
+      getAllUsers: {
+        method: 'GET',
+        isArray: true,
+        url: apiURL + '/users',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
     };
     return $resource(apiURL + '/users/:username', { }, config);
   }
@@ -39,10 +45,21 @@ angular.module('angularApp.github', [
   function($scope, $resource, Github) {
 
     $scope.requestedUsername = 'chriscoyier';
+    $scope.userimage = true;
 
     $scope.doSearch = function() {
+      $scope.userimage = false;
+      $scope.avatar_url = 'github/loading.gif';
       $scope.userData = Github.getuser({
         username: $scope.requestedUsername
+      });
+    };
+
+    // get all users
+    $scope.allUser = function () {
+      $scope.allavatar_url = 'github/loading.gif';
+      $scope.promise = Github.getAllUsers().$promise.then(function (data) {
+        $scope.users = data;
       });
     };
 
