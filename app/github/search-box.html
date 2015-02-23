@@ -1,0 +1,14 @@
+<div class="well col-md-4">
+  <div class="form-group">
+    <input class="form-control"
+           type="text"
+           placeholder="Enter username"
+           ng-model="requestedUsername"
+           autofocus>
+  </div>
+  <button class="btn btn-primary btn-block"
+          ng-click="doSearch(requestedUsername)">Search</button>
+  <button class="btn btn-success btn-block hidden"
+          ng-click="allUser()">Search for all users</button>
+
+</div>
