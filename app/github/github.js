@@ -27,8 +27,14 @@ angular.module('angularApp.github', [
         url: apiURL + '/users',
         headers: { 'Authorization': 'Bearer ' + accessToken }
       },
+      getRepo: {
+        method: 'GET',
+        isArray: true,
+        url: apiURL + '/users/:username/repos',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      }
     };
-    return $resource(apiURL + '/users/:username', { }, config);
+    return $resource(apiURL, { username: '@username' }, config);
   }
 ])
 
@@ -61,6 +67,15 @@ angular.module('angularApp.github', [
       $scope.allavatar_url = 'github/loading.gif';
       $scope.promise = Github.getAllUsers().$promise.then(function (data) {
         $scope.users = data;
+      });
+    };
+
+    $scope.showRepo = function (data) {
+      Github.getRepo({
+        username: $scope.requestedUsername
+      })
+      .$promise.then(function (data) {
+        console.log(data);
       });
     };
 
