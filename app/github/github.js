@@ -33,11 +33,12 @@ angular.module('angularApp.github', [
 ])
 
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/github', {
-    templateUrl: 'github/github.html',
-    controller: 'GithubCtrl'
-  });
+.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.when('/github', {
+      templateUrl: 'github/github.html',
+      controller: 'GithubCtrl'
+    });
 }])
 
 .controller('GithubCtrl', [
@@ -63,4 +64,20 @@ angular.module('angularApp.github', [
       });
     };
 
-}]);
+}])
+
+.directive('searchbox', function () {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: '/app/github/search-box.html'
+  };
+})
+
+.directive('userdetails', function () {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: '/app/github/user-details.html'
+  };
+});

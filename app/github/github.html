@@ -3,49 +3,12 @@
   <div class="container">
     <div class="row">
 
-      <div class="well col-md-4">
-        <div class="form-group">
-          <input class="form-control"
-                 type="text"
-                 placeholder="Enter username"
-                 ng-model="requestedUsername"
-                 autofocus>
-        </div>
-        <button class="btn btn-primary btn-block"
-                ng-click="doSearch(requestedUsername)">Search</button>
-        <button class="btn btn-success btn-block"
-                ng-click="allUser()">Search for all users</button>
-
-      </div>
+      <searchbox></searchbox>
 
       <div class="col-md-8">
         <div class="row">
 
-          <div class="col-md-2 col-xs-3 text-center">
-            <span class="fa-stack fa-lg fa-5x" ng-if="userimage">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-            </span>
-            <img class="img-responsive img-circle"
-                 src="{{ userData.avatar_url || avatar_url}}"
-                 alt="{{ userData.name}}">
-          </div>
-
-          <div class="col-md-10 col-xs-8">
-            <div class="clearfix form-group">
-              <label class="col-md-6 control-label">{{ userData.name || requestedUsername}}</label>
-            </div>
-            <div class="clearfix form-group">
-              <label class="col-md-6 control-label">{{ userData.following || 0 }} - Following</label>
-              <label class="col-md-6 control-label">{{ userData.followers || 0 }} - Followers</label>
-            </div>
-
-            <div class="clearfix form-group">
-              <label class="col-md-6 control-label">Location - {{ userData.location || "" }}</label>
-              <label class="col-md-6 control-label">Email - {{ userData.email || '' }}</label>
-            </div>
-
-          </div>
+          <userdetails></userdetails>
 
           <div class="col-md-12 col-xs-12">
             <div class="row">
