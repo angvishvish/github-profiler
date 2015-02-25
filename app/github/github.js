@@ -69,6 +69,7 @@ angular.module('angularApp.github', [
 .directive('searchbox', function () {
   return {
     restrict: 'E',
+    replace: true,
     templateUrl: '/app/github/search-box.html'
   };
 })
@@ -76,6 +77,7 @@ angular.module('angularApp.github', [
 .directive('userdetails', function () {
   return {
     restrict: 'E',
+    replace: true,
     templateUrl: '/app/github/user-details.html'
   };
 });
