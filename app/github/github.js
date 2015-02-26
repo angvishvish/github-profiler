@@ -66,7 +66,7 @@ angular.module('angularApp.github', [
 
     $scope.doSearch = function() {
       $scope.userimage = $scope.errorfound = false;
-      $scope.avatar_url = 'github/loading.gif';
+      $scope.avatar_url = true;
        Github.getuser({
           username: $scope.requestedUsername
        })

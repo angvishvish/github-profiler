@@ -1,15 +1,13 @@
-<div class="col-md-4">
-  <div class="well">
-    <div class="form-group">
-      <input class="form-control"
-             type="text"
-             placeholder="Enter username"
-             ng-model="requestedUsername"
-             autofocus>
-    </div>
-    <button class="btn btn-success btn-block"
-            ng-click="doSearch(requestedUsername)">Search user</button>
-
+<div class="well">
+  <div class="form-group">
+    <input class="form-control"
+           type="text"
+           placeholder="Enter username"
+           ng-model="requestedUsername"
+           autofocus>
   </div>
+  <button class="btn btn-success btn-block"
+          ng-disabled="!requestedUsername.length"
+          ng-click="doSearch(requestedUsername)">Search user</button>
 
 </div>
