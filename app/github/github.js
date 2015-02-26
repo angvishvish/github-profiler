@@ -34,48 +34,68 @@ angular.module('angularApp.github', [
         headers: { 'Authorization': 'Bearer ' + accessToken }
       }
     };
-    return $resource(apiURL, { username: '@username' }, config);
+    return $resource(apiURL + '/users/:username', { username: '@username' }, config);
   }
 ])
 
 
-.config(['$routeProvider',
+.config([
+  '$routeProvider',
   function($routeProvider) {
+
     $routeProvider.when('/github', {
       templateUrl: 'github/github.html',
       controller: 'GithubCtrl'
     });
-}])
+    $routeProvider.when(
+      '/:username', {
+        templateUrl: '/app/github-repo/github-repo.html',
+        controller: 'githubRepoCtrl'
+      }
+    );
+
+  }
+])
 
 .controller('GithubCtrl', [
-  '$scope', '$resource', 'Github',
-  function($scope, $resource, Github) {
+  '$scope', '$resource', 'Github', '$location',
+  function($scope, $resource, Github, $location) {
 
     $scope.requestedUsername = 'chriscoyier';
     $scope.userimage = true;
 
     $scope.doSearch = function() {
-      $scope.userimage = false;
+      $scope.userimage = $scope.errorfound = false;
       $scope.avatar_url = 'github/loading.gif';
-      $scope.userData = Github.getuser({
-        username: $scope.requestedUsername
-      });
+       Github.getuser({
+          username: $scope.requestedUsername
+       })
+       .$promise.then(function (data) {
+        $scope.userData = data;
+       }, function (error) {
+        $scope.userimage = true;
+        $scope.avatar_url = false;
+        $scope.errorfound = error;
+       });
     };
 
     // get all users
     $scope.allUser = function () {
-      $scope.allavatar_url = 'github/loading.gif';
-      $scope.promise = Github.getAllUsers().$promise.then(function (data) {
+
+      Github.getAllUsers()
+      .$promise.then(function (data) {
         $scope.users = data;
       });
     };
 
-    $scope.showRepo = function (data) {
+    $scope.showRepo = function (path) {
+      $location.path(path);
       Github.getRepo({
         username: $scope.requestedUsername
       })
       .$promise.then(function (data) {
-        console.log(data);
+        $scope.repoData = data;
+        // $state.go('github-repo', { username: $scope.requestedUsername });
       });
     };
 

@@ -1,31 +1,101 @@
-<div class="row">
-  <div class="col-md-2 col-xs-3 text-center">
-    <span class="fa-stack fa-lg fa-5x" ng-if="userimage">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-    </span>
-    <img class="img-responsive img-circle"
-         src="{{ userData.avatar_url || avatar_url}}"
-         alt="{{ userData.name }}">
-  </div>
+<div class="clearfix">
+  <div class="col-md-12">
+    <div class="panel panel-success">
+      <div class="list-group form-horizontal">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2 col-sm-3 col-xs-4">
+              <span class="fa-stack fa-lg fa-3x" ng-hide="userData.avatar_url">
+                <i class="fa fa-square fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse" ng-if="userimage"></i>
+                <i class="fa fa-circle-o-notch fa-spin fa-stack-1x fa-inverse"
+                   ng-show="avatar_url">
+                 </i>
+              </span>
+              <figure class="" ng-show="userData.avatar_url">
+                <img class="img-responsive img-thumbnail"
+                 src="{{ userData.avatar_url }}"
+                 alt="{{ userData.name }}">
+              </figure>
 
-  <div class="col-md-10 col-xs-8">
+            </div>
+            <div class="col-md-10 col-sm-9 col-xs-12">
+               <h2>{{ userData.name || requestedUsername}}</h2>
+               <button class="btn btn-link"
+                       ng-click="showRepo('/'+requestedUsername)">
+                       Show Repository
+               </button>
+            </div>
+          </div>
 
-    <div class="clearfix form-group">
-      <label class="col-md-6 control-label">{{ userData.name || requestedUsername}}</label>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Working for</label>
+            <div class="col-sm-8">
+              {{ userData.company || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Following</label>
+            <div class="col-sm-8">
+              {{ userData.following || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Followers</label>
+            <div class="col-sm-8">
+              {{ userData.followers || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Location</label>
+            <div class="col-sm-8">
+              {{ userData.location || "" }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Email</label>
+            <div class="col-sm-8">
+              {{ userData.email || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Public repository</label>
+            <div class="col-sm-8">
+              {{ userData.public_repos || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Public gist</label>
+            <div class="col-sm-8">
+              {{ userData.public_gists || '' }}
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row form-group">
+            <label class="col-sm-4 control-label">Hireable</label>
+            <div class="col-sm-8">
+              <i class="fa fa-check" ng-show="userData.hireable"></i>
+              <i class="fa fa-times" ng-show="!userData.hireable"></i>
+            </div>
+          </div>
+        </li>
+      </div>
     </div>
-    <div class="clearfix form-group">
-      <label class="col-md-6 control-label">Following - {{ userData.following || 0 }} </label>
-      <label class="col-md-6 control-label">Followers - {{ userData.followers || 0 }}</label>
-    </div>
-
-    <div class="clearfix form-group">
-      <label class="col-md-6 control-label">Location - {{ userData.location || "" }}</label>
-      <label class="col-md-6 control-label">Email - {{ userData.email || '' }}</label>
-    </div>
-
-    <button class="btn btn-info btn-block"
-          ng-click="showRepo(requestedUsername)">Show Repository</button>
 
   </div>
 </div>
