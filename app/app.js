@@ -4,7 +4,17 @@
 angular.module('angularApp', [
   'ngRoute',
   'angularApp.github',
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/github'});
-}]);
+  'angularApp.github-repo'
+])
+
+.config([
+  '$routeProvider',
+  function($routeProvider) {
+
+    $routeProvider.otherwise({
+        redirectTo: '/github'
+      }
+    );
+
+  }
+]);
