@@ -61,22 +61,22 @@ angular.module('angularApp.github', [
   '$scope', '$resource', 'Github', '$location',
   function($scope, $resource, Github, $location) {
 
-    $scope.requestedUsername = 'chriscoyier';
-    $scope.userimage = true;
+    $scope.requestedUsername = 'angvishvish';
+    $scope.git_logo = true;
+    $scope.search = false;
 
     $scope.doSearch = function() {
-      $scope.userimage = $scope.errorfound = false;
-      $scope.avatar_url = true;
-       Github.getuser({
-          username: $scope.requestedUsername
-       })
-       .$promise.then(function (data) {
+      $scope.errorfound = false;
+      $scope.search = true;
+
+      Github.getuser({
+        username: $scope.requestedUsername
+      })
+      .$promise.then(function (data) {
         $scope.userData = data;
-       }, function (error) {
-        $scope.userimage = true;
-        $scope.avatar_url = false;
+      }, function (error) {
         $scope.errorfound = error;
-       });
+      });
     };
 
     // get all users
