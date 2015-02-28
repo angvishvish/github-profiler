@@ -1,9 +1,9 @@
-<div class="panel panel-success">
+<div class="panel panel-success" ng-if="!github_details">
   <div class="list-group form-horizontal">
     <li class="list-group-item">
       <div class="row">
         <div class="col-md-4">
-          <span class="fa-stack fa-lg fa-3x" ng-show="!userData.avatar_url">
+          <span class="fa-stack fa-lg fa-5x" ng-show="!userData.avatar_url">
             <i class="fa fa-square fa-stack-2x"></i>
             <i class="fa fa-github fa-stack-1x fa-inverse"
                ng-show="!search"></i>
@@ -13,7 +13,7 @@
           </span>
           <figure ng-show="userData.avatar_url">
             <img class="img-responsive img-thumbnail"
-             src="{{ userData.avatar_url }}"
+             src="{{ userData.avatar_url || userImage }}"
              alt="{{ userData.name }}">
           </figure>
 
@@ -21,7 +21,8 @@
         <div class="col-md-8">
            <h4>{{ userData.name || requestedUsername}}</h4>
            <a href=""
-              ng-click="showRepo('/'+requestedUsername)">
+              ng-show="show_repo"
+              ng-click="showRepo(requestedUsername)">
               Show Repository
            </a>
         </div>

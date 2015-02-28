@@ -2,6 +2,7 @@
 
 angular.module('angularApp.github', [
   'ngRoute',
+  'ui.router',
   'ngResource',
   'ui.bootstrap'
 ])
@@ -39,33 +40,36 @@ angular.module('angularApp.github', [
 ])
 
 
-.config([
-  '$routeProvider',
-  function($routeProvider) {
+/**
+ * Config
+ */
 
-    $routeProvider.when('/github', {
-      templateUrl: 'github/github.html',
-      controller: 'GithubCtrl'
-    });
-    $routeProvider.when(
-      '/:username', {
-        templateUrl: '/app/github-repo/github-repo.html',
-        controller: 'githubRepoCtrl'
+.config([
+  '$stateProvider',
+  function ($stateProvider) {
+
+    $stateProvider.state(
+      'github', {
+        url: '/github',
+        templateUrl: 'github/github.html',
+        controller: 'GithubCtrl'
       }
     );
 
-  }
-])
+}])
 
 .controller('GithubCtrl', [
-  '$scope', '$resource', 'Github', '$location',
-  function($scope, $resource, Github, $location) {
+  '$scope', '$resource', 'Github', '$state',
+  function($scope, $resource, Github, $state) {
 
-    $scope.requestedUsername = 'angvishvish';
+    $scope.requestedUsername = 'vhf';
     $scope.git_logo = true;
+    $scope.show_repo = false;
     $scope.search = false;
 
+    // search for a particular user
     $scope.doSearch = function() {
+      $scope.github_details = false;
       $scope.errorfound = false;
       $scope.search = true;
 
@@ -74,6 +78,7 @@ angular.module('angularApp.github', [
       })
       .$promise.then(function (data) {
         $scope.userData = data;
+        $scope.show_repo = true;
       }, function (error) {
         $scope.errorfound = error;
       });
@@ -86,17 +91,13 @@ angular.module('angularApp.github', [
       .$promise.then(function (data) {
         $scope.users = data;
       });
+
     };
 
-    $scope.showRepo = function (path) {
-      $location.path(path);
-      Github.getRepo({
-        username: $scope.requestedUsername
-      })
-      .$promise.then(function (data) {
-        $scope.repoData = data;
-        // $state.go('github-repo', { username: $scope.requestedUsername });
-      });
+    // shows all the repo for a particular user
+    $scope.showRepo = function (username) {
+      $state.go('github.detail', { username: username });
+      $scope.github_details = true;
     };
 
 }])
