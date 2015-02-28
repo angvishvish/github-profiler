@@ -1,1 +1,5 @@
-{{repoData}}
+<div class="list-group">
+  <a href="#" class="list-group-item" ng-repeat="repo in repoData" >
+    {{ repo.name }} <span class="badge">{{ repo.forks_count }}</span>
+  </a>
+</div>

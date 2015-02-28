@@ -9,33 +9,17 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-md-offset-4">
+      <div class="col-md-4 col-sm-6 col-xs-12">
 
         <searchbox></searchbox>
 
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-12">
+
         <userdetails></userdetails>
 
-        <div class="col-md-12 col-xs-12">
-          <div class="row">
-
-            <div class="col-md-6 col-sm-6 col-xs-12" ng-repeat="user in users">
-              <div class="media">
-                <div class="media-left col-md-4 col-sm-6 col-xs-4">
-                  <a href="{{ user.html_url }}">
-                    <img class="img-responsive img-circle" src="{{ user.avatar_url || allavatar_url }}" alt="...">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">
-                    <a href="{{ user.html_url }}">{{ user.login }}</a>
-                  </h4>
-                  <a href="{{ user.html_url }}">{{ user.html_url }}</a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+        <div class="col-md-12 col-xs-12" ng-show="github_details" ui-view></div>
 
       </div>
 
