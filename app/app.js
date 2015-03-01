@@ -1,11 +1,10 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('angularApp', [
+angular.module('githubApp', [
   'ngRoute',
   'ui.router',
-  'angularApp.github',
-  'angularApp.github-repo'
+  'githubApp.github'
 ])
 
 
