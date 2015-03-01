@@ -5,7 +5,8 @@ angular.module('githubApp', [
   'ngRoute',
   'ui.router',
   'githubApp.github',
-  'githubApp.github-user'
+  'githubApp.github-user',
+  'githubApp.github-repo'
 ])
 
 

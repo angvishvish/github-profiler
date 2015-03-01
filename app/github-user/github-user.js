@@ -31,15 +31,22 @@ angular.module('githubApp.github-user', [
 .controller('githubUserCtrl', [
   '$scope', '$state', 'Github',
   function ($scope, $state, Github) {
+    $scope.showRepo = false;
 
-      Github.getuser({
-        username: $state.params.username
-      })
-      .$promise.then(function (data) {
-        $scope.userData = data;
-      }, function (error) {
-        $scope.errorfound = error;
-      });
+    Github.getuser({
+      username: $state.params.username
+    })
+    .$promise.then(function (data) {
+      $scope.userData = data;
+    }, function (error) {
+      $scope.errorfound = error;
+    });
 
+    // shows all the repo for a particular user
+    $scope.showDetails = function (username) {
+      $state.go('github.user.repo', { username: username });
+      $scope.showUser = false;
+      $scope.showRepo = true;
+    };
   }
 ]);

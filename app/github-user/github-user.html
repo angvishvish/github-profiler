@@ -1,4 +1,4 @@
-<div class="panel panel-success" ng-if="!showSearchResult">
+<div class="panel panel-success" ng-if="showUser">
   <div class="list-group form-horizontal">
 
     <li class="list-group-item">
@@ -27,7 +27,7 @@
               {{ userData.name }}
             </a>
           </h4>
-          <div ng-show="user_details">
+          <div>
             <small>Private gist - {{ userData.private_gists || 'hidden' }}</small><br>
             <small>Public gist - {{ userData.public_gists || 'hidden'}}</small><br>
             <small>Total private repos - {{ userData.total_private_repos || 'hidden' }}</small>
@@ -104,3 +104,5 @@
 
   </div>
 </div>
+
+<div ui-view ng-if="showRepo"></div>

@@ -16,7 +16,7 @@ angular.module('githubApp.github', [
   '$resource',
   function ($resource) {
     var apiURL = 'https://api.github.com';
-    var accessToken = 'e5aafa3b67378c4a2b279a289b2ddddc7a1b8025';
+    var accessToken = '--';
     var config = {
       searchUser: {
         method: 'GET',
@@ -71,27 +71,29 @@ angular.module('githubApp.github', [
     $scope.searchresult = $scope.searchresult || [];
     $scope.requestedUsername = 'superman';
     $scope.showSearchResult = true;
+    $scope.showUser = false;
 
     // search for a user
     $scope.doSearch = function() {
       Github.searchUser({
         q: $scope.requestedUsername
-
       })
       .$promise.then(function (data) {
         $scope.searchresult = data;
         $scope.showSearchResult = true;
+        $scope.showUser = false;
+        $scope.showRepo = false;
       }, function (error) {
         $scope.errorfound = error;
       });
     };
 
     // shows all the repo for a particular user
-    $scope.showDetails = function (username) {
+    $scope.showUserDetails = function (username) {
       $state.go('github.user', { username: username });
       $scope.showSearchResult = false;
+      $scope.showUser = true;
     };
-
 }])
 
 .directive('searchbox', function () {
