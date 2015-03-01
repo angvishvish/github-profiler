@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularApp.github-user', [
+angular.module('githubApp.github-user', [
   'ngRoute',
   'ui.router',
   'ngResource',
@@ -17,8 +17,8 @@ angular.module('angularApp.github-user', [
 
     $stateProvider.state('github.user', {
       url: '/:username',
-      templateUrl: 'github-repo/github-user.html',
-      controller: 'githubUserCtrl',
+      templateUrl: 'github-user/github-user.html',
+      controller: 'githubUserCtrl'
     });
 
   }
@@ -28,9 +28,18 @@ angular.module('angularApp.github-user', [
  * Authorizations resource
  */
 
-.factory('Github', [
-  '$resource',
-  function ($resource) {
+.controller('githubUserCtrl', [
+  '$scope', '$state', 'Github',
+  function ($scope, $state, Github) {
 
+      Github.getuser({
+        username: $state.params.username
+      })
+      .$promise.then(function (data) {
+        $scope.userData = data;
+      }, function (error) {
+        $scope.errorfound = error;
+      });
 
-}]);
+  }
+]);
