@@ -1,5 +1,6 @@
-<div class="panel panel-success" ng-if="!github_details">
+<div class="panel panel-success">
   <div class="list-group form-horizontal">
+
     <li class="list-group-item">
       <div class="row">
         <div class="col-md-4">
@@ -11,88 +12,97 @@
                ng-show="search">
             </i>
           </span>
-          <figure ng-show="userData.avatar_url">
-            <img class="img-responsive img-thumbnail"
-             src="{{ userData.avatar_url || userImage }}"
-             alt="{{ userData.name }}">
-          </figure>
+          <a href="" ng-click="showDetails(requestedUsername)">
+            <figure ng-show="userData.avatar_url">
+              <img class="img-responsive img-thumbnail"
+               src="{{ userData.avatar_url || userImage }}"
+               alt="{{ userData.name }}">
+            </figure>
+          </a>
 
         </div>
         <div class="col-md-8">
-           <h4>{{ userData.name || requestedUsername}}</h4>
-           <a href=""
-              ng-show="show_repo"
-              ng-click="showRepo(requestedUsername)">
-              Show Repository
-           </a>
+          <h4>
+            <a href="" ng-click="showDetails(requestedUsername)">
+              {{ userData.name || requestedUsername}}
+            </a>
+          </h4>
+          <div ng-show="user_details">
+            <small>Private gist - {{ userData.private_gists || 'hidden' }}</small><br>
+            <small>Public gist - {{ userData.public_gists || 'hidden'}}</small><br>
+            <small>Total private repos - {{ userData.total_private_repos || 'hidden' }}</small>
+          </div>
         </div>
       </div>
+    </li>
 
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Working for</label>
-        <div class="col-sm-8">
-          {{ userData.company || '' }}
+    <div ng-show="user_details">
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Working for</label>
+          <div class="col-sm-8">
+            {{ userData.company || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Following</label>
-        <div class="col-sm-8">
-          {{ userData.following || '' }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Following</label>
+          <div class="col-sm-8">
+            {{ userData.following || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Followers</label>
-        <div class="col-sm-8">
-          {{ userData.followers || '' }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Followers</label>
+          <div class="col-sm-8">
+            {{ userData.followers || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Location</label>
-        <div class="col-sm-8">
-          {{ userData.location || "" }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Location</label>
+          <div class="col-sm-8">
+            {{ userData.location || "" }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Email</label>
-        <div class="col-sm-8">
-          {{ userData.email || '' }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Email</label>
+          <div class="col-sm-8">
+            {{ userData.email || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Public repository</label>
-        <div class="col-sm-8">
-          {{ userData.public_repos || '' }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Public repository</label>
+          <div class="col-sm-8">
+            {{ userData.public_repos || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Public gist</label>
-        <div class="col-sm-8">
-          {{ userData.public_gists || '' }}
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Public gist</label>
+          <div class="col-sm-8">
+            {{ userData.public_gists || '' }}
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="row form-group">
-        <label class="col-sm-4 control-label">Hireable</label>
-        <div class="col-sm-8">
-          <i class="fa fa-check" ng-show="userData.hireable"></i>
-          <i class="fa fa-times" ng-show="!userData.hireable"></i>
+      </li>
+      <li class="list-group-item">
+        <div class="row form-group">
+          <label class="col-sm-4 control-label">Hireable</label>
+          <div class="col-sm-8">
+            <i class="fa fa-check" ng-show="userData.hireable"></i>
+            <i class="fa fa-times" ng-show="!userData.hireable"></i>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
+
   </div>
 </div>

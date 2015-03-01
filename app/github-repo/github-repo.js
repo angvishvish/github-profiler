@@ -23,12 +23,16 @@ angular.module('angularApp.github-repo', [
 .controller('githubRepoCtrl', [
   '$scope', '$resource', 'Github',
   function($scope, $resource, Github) {
-    Github.getRepo({
-      username: $scope.requestedUsername
-    })
-    .$promise.then(function (data) {
-      $scope.repoData = data;
-    });
+    // shows all the repo for a particular user
+    $scope.showRepo = function (username) {
+        Github.getRepo({
+        username: $scope.requestedUsername
+      })
+      .$promise.then(function (data) {
+        $scope.repoData = data;
+      });
+    };
+
   }
 ]);
 

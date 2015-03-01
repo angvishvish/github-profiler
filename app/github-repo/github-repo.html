@@ -1,5 +1,17 @@
 <div class="list-group">
-  <a href="#" class="list-group-item" ng-repeat="repo in repoData" >
-    {{ repo.name }} <span class="badge">{{ repo.forks_count }}</span>
+
+  <a href=""
+     class="list-group-item active"
+     ng-click="showRepo(requestedUsername)">
+     Show Repository
+     <span class="badge"
+           ng-if="repoData">
+           Total projects - {{ repoData.length }}
+      </span>
   </a>
+  <a href="#" class="list-group-item" ng-repeat="repo in repoData" >
+    {{ repo.name }}
+    <span class="badge">{{ repo.forks_count }}</span>
+  </a>
+
 </div>

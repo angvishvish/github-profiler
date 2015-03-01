@@ -17,9 +17,11 @@
 
       <div class="col-md-6 col-sm-6 col-xs-12">
 
-        <userdetails></userdetails>
+        <div ng-if="github_details">
+          <userdetails></userdetails>
+        </div>
 
-        <div class="col-md-12 col-xs-12" ng-show="github_details" ui-view></div>
+        <div class="col-md-12 col-xs-12" ng-show="!github_details" ui-view></div>
 
       </div>
 

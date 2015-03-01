@@ -62,23 +62,26 @@ angular.module('angularApp.github', [
   '$scope', '$resource', 'Github', '$state',
   function($scope, $resource, Github, $state) {
 
-    $scope.requestedUsername = 'vhf';
+    $scope.requestedUsername = 'LeaVerou';
     $scope.git_logo = true;
     $scope.show_repo = false;
     $scope.search = false;
+    $scope.github_details = true;
 
     // search for a particular user
     $scope.doSearch = function() {
-      $scope.github_details = false;
       $scope.errorfound = false;
+      $scope.github_details = true;
       $scope.search = true;
+      $scope.user_details = false;
 
       Github.getuser({
         username: $scope.requestedUsername
       })
       .$promise.then(function (data) {
         $scope.userData = data;
-        $scope.show_repo = true;
+        $scope.search = false;
+        $scope.user_details = true;
       }, function (error) {
         $scope.errorfound = error;
       });
@@ -95,9 +98,9 @@ angular.module('angularApp.github', [
     };
 
     // shows all the repo for a particular user
-    $scope.showRepo = function (username) {
+    $scope.showDetails = function (username) {
       $state.go('github.detail', { username: username });
-      $scope.github_details = true;
+      $scope.github_details = false;
     };
 
 }])
