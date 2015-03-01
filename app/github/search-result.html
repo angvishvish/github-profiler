@@ -1,0 +1,9 @@
+<div class="list-group" ng-if="showSearchResult">
+  <a href="" class="list-group-item active">Search result <span class="badge">{{ searchresult.total_count }}</span></a>
+  <a href=""
+     class="list-group-item"
+     ng-repeat="result in searchresult.items"
+     ng-click="showUserDetails(result.login)">
+     {{ result.login }}<span class="badge">{{ result.score }}</span>
+  </a>
+</div>

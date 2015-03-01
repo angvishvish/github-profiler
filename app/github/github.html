@@ -10,19 +10,12 @@
       </div>
 
       <div class="col-md-4 col-sm-6 col-xs-12">
-
         <searchbox></searchbox>
-
       </div>
 
       <div class="col-md-6 col-sm-6 col-xs-12">
-
-        <div ng-if="github_details">
-          <userdetails></userdetails>
-        </div>
-
-        <div class="col-md-12 col-xs-12" ng-show="!github_details" ui-view></div>
-
+        <searchresult></searchresult>
+        <div ui-view></div>
       </div>
 
     </div>

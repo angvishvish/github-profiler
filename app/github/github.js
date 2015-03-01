@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularApp.github', [
+angular.module('githubApp.github', [
   'ngRoute',
   'ui.router',
   'ngResource',
@@ -18,6 +18,12 @@ angular.module('angularApp.github', [
     var apiURL = 'https://api.github.com';
     var accessToken = '--';
     var config = {
+      searchUser: {
+        method: 'GET',
+        url: apiURL + '/search/users',
+        q: '@q',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
       getuser: {
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + accessToken }
@@ -52,57 +58,42 @@ angular.module('angularApp.github', [
       'github', {
         url: '/github',
         templateUrl: 'github/github.html',
-        controller: 'GithubCtrl'
+        controller: 'githubCtrl'
       }
     );
 
 }])
 
-.controller('GithubCtrl', [
+.controller('githubCtrl', [
   '$scope', '$resource', 'Github', '$state',
   function($scope, $resource, Github, $state) {
 
-    $scope.requestedUsername = 'LeaVerou';
-    $scope.git_logo = true;
-    $scope.show_repo = false;
-    $scope.search = false;
-    $scope.github_details = true;
+    $scope.searchresult = $scope.searchresult || [];
+    $scope.requestedUsername = 'superman';
+    $scope.showSearchResult = true;
+    $scope.showUser = false;
 
-    // search for a particular user
+    // search for a user
     $scope.doSearch = function() {
-      $scope.errorfound = false;
-      $scope.github_details = true;
-      $scope.search = true;
-      $scope.user_details = false;
-
-      Github.getuser({
-        username: $scope.requestedUsername
+      Github.searchUser({
+        q: $scope.requestedUsername
       })
       .$promise.then(function (data) {
-        $scope.userData = data;
-        $scope.search = false;
-        $scope.user_details = true;
+        $scope.searchresult = data;
+        $scope.showSearchResult = true;
+        $scope.showUser = false;
+        $scope.showRepo = false;
       }, function (error) {
         $scope.errorfound = error;
       });
     };
 
-    // get all users
-    $scope.allUser = function () {
-
-      Github.getAllUsers()
-      .$promise.then(function (data) {
-        $scope.users = data;
-      });
-
-    };
-
     // shows all the repo for a particular user
-    $scope.showDetails = function (username) {
-      $state.go('github.detail', { username: username });
-      $scope.github_details = false;
+    $scope.showUserDetails = function (username) {
+      $state.go('github.user', { username: username });
+      $scope.showSearchResult = false;
+      $scope.showUser = true;
     };
-
 }])
 
 .directive('searchbox', function () {
@@ -113,10 +104,10 @@ angular.module('angularApp.github', [
   };
 })
 
-.directive('userdetails', function () {
+.directive('searchresult', function () {
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: '/app/github/user-details.html'
+    templateUrl: '/app/github/search-result.html'
   };
 });

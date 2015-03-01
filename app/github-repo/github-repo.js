@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularApp.github-repo', [
+angular.module('githubApp.github-repo', [
   'ngRoute',
   'ui.router',
   'ngResource',
@@ -11,8 +11,8 @@ angular.module('angularApp.github-repo', [
   '$stateProvider',
   function($stateProvider) {
 
-    $stateProvider.state('github.detail', {
-      url: '/:username',
+    $stateProvider.state('github.user.repo', {
+      url: '/repo',
       templateUrl: 'github-repo/github-repo.html',
       controller: 'githubRepoCtrl',
     });
@@ -21,12 +21,13 @@ angular.module('angularApp.github-repo', [
 ])
 
 .controller('githubRepoCtrl', [
-  '$scope', '$resource', 'Github',
-  function($scope, $resource, Github) {
+  '$scope', '$state', 'Github',
+  function($scope, $state, Github) {
+
     // shows all the repo for a particular user
-    $scope.showRepo = function (username) {
+    $scope.showRepo = function () {
         Github.getRepo({
-        username: $scope.requestedUsername
+        username: $state.params.username
       })
       .$promise.then(function (data) {
         $scope.repoData = data;
