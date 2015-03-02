@@ -24,6 +24,7 @@ angular.module('githubApp.github-repo', [
   '$scope', '$state', 'Github',
   function($scope, $state, Github) {
     $scope.searching = true;
+    $scope.gotouser = $state.params.username;
 
     Github.getRepo({
       username: $state.params.username
