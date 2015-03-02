@@ -28,16 +28,21 @@ angular.module('githubApp.github', [
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + accessToken }
       },
-      getAllUsers: {
-        method: 'GET',
-        isArray: true,
-        url: apiURL + '/users',
-        headers: { 'Authorization': 'Bearer ' + accessToken }
-      },
       getRepo: {
         method: 'GET',
         isArray: true,
         url: apiURL + '/users/:username/repos',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
+      getRepoDetails: {
+        method: 'GET',
+        url: apiURL + '/repos/:owner/:repo/languages',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
+      getAllUsers: {
+        method: 'GET',
+        isArray: true,
+        url: apiURL + '/users',
         headers: { 'Authorization': 'Bearer ' + accessToken }
       }
     };
@@ -69,12 +74,17 @@ angular.module('githubApp.github', [
   function($scope, $resource, Github, $state) {
 
     $scope.searchresult = $scope.searchresult || [];
-    $scope.requestedUsername = 'superman';
+
+    $scope.searching = false;
     $scope.showSearchResult = true;
     $scope.showUser = false;
+    $scope.showRepoDetails = false;
 
     // search for a user
     $scope.doSearch = function() {
+      $state.go('github', { });
+      $scope.searching = true;
+
       Github.searchUser({
         q: $scope.requestedUsername
       })
@@ -83,6 +93,8 @@ angular.module('githubApp.github', [
         $scope.showSearchResult = true;
         $scope.showUser = false;
         $scope.showRepo = false;
+        $scope.searching = false;
+        $scope.showRepoDetails = false;
       }, function (error) {
         $scope.errorfound = error;
       });
@@ -90,9 +102,9 @@ angular.module('githubApp.github', [
 
     // shows all the repo for a particular user
     $scope.showUserDetails = function (username) {
-      $state.go('github.user', { username: username });
       $scope.showSearchResult = false;
       $scope.showUser = true;
+      $state.go('github.user', { username: username });
     };
 }])
 

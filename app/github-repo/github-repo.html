@@ -4,14 +4,20 @@
      class="list-group-item active"
      ng-click="showRepo(requestedUsername)">
      Show Repository
+     <i class="fa fa-circle-o-notch fa-spin pull-right" ng-if="searching"></i>
      <span class="badge"
            ng-if="repoData">
            Total projects - {{ repoData.length }}
       </span>
   </a>
-  <a href="#" class="list-group-item" ng-repeat="repo in repoData" >
+  <a href=""
+    class="list-group-item"
+    ng-repeat="repo in repoData"
+    ng-click="showRepoDetails(repo.name)">
     {{ repo.name }}
     <span class="badge">{{ repo.forks_count }}</span>
   </a>
 
 </div>
+
+<div ui-view></div>

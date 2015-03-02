@@ -6,7 +6,8 @@ angular.module('githubApp', [
   'ui.router',
   'githubApp.github',
   'githubApp.github-user',
-  'githubApp.github-repo'
+  'githubApp.github-repo',
+  'githubApp.github-repo-details'
 ])
 
 
