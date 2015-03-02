@@ -38,6 +38,7 @@ angular.module('githubApp.github-user', [
     })
     .$promise.then(function (data) {
       $scope.userData = data;
+      $scope.showUser = true;
     }, function (error) {
       $scope.errorfound = error;
     });

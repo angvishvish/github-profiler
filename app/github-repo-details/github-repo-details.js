@@ -23,13 +23,31 @@ angular.module('githubApp.github-repo-details', [
     '$scope', '$state', 'Github',
     function ($scope, $state, Github ) {
 
+      $scope.repoDetails = $scope.repoDetails || {};
+
       Github.getRepoDetails({
         owner: $state.params.username,
         repo: $state.params.reponame
       })
       .$promise.then(function (data) {
         $scope.repoDetails = data;
+        highchartObj($scope.repoDetails);
       });
+
+      var highchartObj = function (obj) {
+        var lang_arr = [];
+        var sum_of_files = 0, percentage = 0;
+
+        for(var lang in obj) {
+          if(!isNaN(parseFloat(obj[lang])) && isFinite(obj[lang])) {
+            lang_arr.push([lang, obj[lang]]);
+          }
+        }
+
+        // show chart when we have an array
+        showRepoLang(lang_arr);
+      };
+
     }
   ]
 );

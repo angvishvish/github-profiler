@@ -1,8 +1,10 @@
+<div class="show-repo-lang"
+    ng-if="showRepoDetails"></div>
+
 <div class="list-groups">
   <a href=""
     class="list-group-item"
     ng-repeat="(key, value) in repoDetails">
-    {{ key }} - {{ value }}
+    {{ key }} <span class="badge">{{ value }} - files</span>
   </a>
 </div>
-
