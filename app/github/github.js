@@ -16,7 +16,7 @@ angular.module('githubApp.github', [
   '$resource',
   function ($resource) {
     var apiURL = 'https://api.github.com';
-    var accessToken = '--';
+    var accessToken = '3596181dd403456e86e0fe23776ffbdb02a56cb7';
     var config = {
       searchUser: {
         method: 'GET',
@@ -28,16 +28,21 @@ angular.module('githubApp.github', [
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + accessToken }
       },
-      getAllUsers: {
-        method: 'GET',
-        isArray: true,
-        url: apiURL + '/users',
-        headers: { 'Authorization': 'Bearer ' + accessToken }
-      },
       getRepo: {
         method: 'GET',
         isArray: true,
         url: apiURL + '/users/:username/repos',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
+      getRepoDetails: {
+        method: 'GET',
+        url: apiURL + '/repos/:owner/:repo/languages',
+        headers: { 'Authorization': 'Bearer ' + accessToken }
+      },
+      getAllUsers: {
+        method: 'GET',
+        isArray: true,
+        url: apiURL + '/users',
         headers: { 'Authorization': 'Bearer ' + accessToken }
       }
     };
@@ -69,7 +74,7 @@ angular.module('githubApp.github', [
   function($scope, $resource, Github, $state) {
 
     $scope.searchresult = $scope.searchresult || [];
-    $scope.requestedUsername = 'superman';
+    $scope.requestedUsername = 'angvishvish';
     $scope.showSearchResult = true;
     $scope.showUser = false;
 

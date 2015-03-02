@@ -9,9 +9,14 @@
            Total projects - {{ repoData.length }}
       </span>
   </a>
-  <a href="#" class="list-group-item" ng-repeat="repo in repoData" >
+  <a href=""
+    class="list-group-item"
+    ng-repeat="repo in repoData"
+    ng-click="showRepoDetails(repo.name)">
     {{ repo.name }}
     <span class="badge">{{ repo.forks_count }}</span>
   </a>
 
 </div>
+
+<div ui-view></div>

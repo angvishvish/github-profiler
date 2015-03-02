@@ -12,7 +12,7 @@ angular.module('githubApp.github-repo', [
   function($stateProvider) {
 
     $stateProvider.state('github.user.repo', {
-      url: '/repo',
+      url: '/:repo',
       templateUrl: 'github-repo/github-repo.html',
       controller: 'githubRepoCtrl',
     });
@@ -24,14 +24,16 @@ angular.module('githubApp.github-repo', [
   '$scope', '$state', 'Github',
   function($scope, $state, Github) {
 
-    // shows all the repo for a particular user
-    $scope.showRepo = function () {
-        Github.getRepo({
-        username: $state.params.username
-      })
-      .$promise.then(function (data) {
-        $scope.repoData = data;
-      });
+    Github.getRepo({
+      username: $state.params.username
+    })
+    .$promise.then(function (data) {
+      $scope.repoData = data;
+    });
+
+    $scope.showRepoDetails = function (reponame) {
+      $state.go('github.user.repo.details', { reponame: reponame });
+      $scope.showRepo = false;
     };
 
   }

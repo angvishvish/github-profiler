@@ -43,8 +43,8 @@ angular.module('githubApp.github-user', [
     });
 
     // shows all the repo for a particular user
-    $scope.showDetails = function (username) {
-      $state.go('github.user.repo', { username: username });
+    $scope.showDetails = function () {
+      $state.go('github.user.repo', { repo: 'repo' });
       $scope.showUser = false;
       $scope.showRepo = true;
     };
