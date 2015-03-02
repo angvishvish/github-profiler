@@ -31,19 +31,9 @@ angular.module('githubApp.github-user', [
 .controller('githubUserCtrl', [
   '$scope', '$state', 'Github',
   function ($scope, $state, Github) {
+    $scope.showSearchResult = false;
     $scope.showRepo = false;
     $scope.searching = true;
-
-    Github.getuser({
-      username: $state.params.username
-    })
-    .$promise.then(function (data) {
-      $scope.userData = data;
-      $scope.showUser = true;
-      $scope.searching = false;
-    }, function (error) {
-      $scope.errorfound = error;
-    });
 
     // shows all the repo for a particular user
     $scope.showDetails = function () {

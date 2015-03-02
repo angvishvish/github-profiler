@@ -74,7 +74,7 @@ angular.module('githubApp.github', [
   function($scope, $resource, Github, $state) {
 
     $scope.searchresult = $scope.searchresult || [];
-
+    $scope.requestedUsername = "angvish";
     $scope.searching = false;
     $scope.showSearchResult = true;
     $scope.showUser = false;
@@ -104,7 +104,19 @@ angular.module('githubApp.github', [
     $scope.showUserDetails = function (username) {
       $scope.showSearchResult = false;
       $scope.showUser = true;
+
       $state.go('github.user', { username: username });
+      console.log($state.params.name);
+      Github.getuser({
+        username: username
+      })
+      .$promise.then(function (data) {
+        $scope.userData = data;
+        $scope.showUser = true;
+        $scope.searching = false;
+      }, function (error) {
+        $scope.errorfound = error;
+      });
     };
 }])
 

@@ -9,9 +9,9 @@
             <i class="fa fa-circle-o-notch fa-spin fa-stack-1x fa-inverse"></i>
           </span>
           <a href="" ng-click="showDetails()">
-            <figure ng-show="userData.avatar_url">
+            <figure>
               <img class="img-responsive img-circle"
-               src="{{ userData.avatar_url || userImage }}"
+               src="{{ userData.avatar_url }}"
                alt="{{ userData.login }}">
             </figure>
           </a>
@@ -19,14 +19,10 @@
         </div>
         <div class="col-md-8">
           <h4>
-            <a href="" ng-click="showDetails()">
-              {{ userData.name }}
-            </a>
+            <a href="" ng-click="showDetails()">{{ userData.name }}</a>
           </h4>
           <div>
-            <small>Private gist - {{ userData.private_gists || 'hidden' }}</small><br>
-            <small>Public gist - {{ userData.public_gists || 'hidden'}}</small><br>
-            <small>Total private repos - {{ userData.total_private_repos || 'hidden' }}</small>
+            <small>Public gist - {{ userData.public_gists || 'hidden'}}</small>
           </div>
         </div>
       </div>
