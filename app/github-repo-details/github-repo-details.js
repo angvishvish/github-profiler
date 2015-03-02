@@ -24,6 +24,8 @@ angular.module('githubApp.github-repo-details', [
     function ($scope, $state, Github ) {
 
       $scope.repoDetails = $scope.repoDetails || {};
+      $scope.reponame = $state.params.reponame;
+      $scope.searching = true;
 
       Github.getRepoDetails({
         owner: $state.params.username,
@@ -32,6 +34,7 @@ angular.module('githubApp.github-repo-details', [
       .$promise.then(function (data) {
         $scope.repoDetails = data;
         highchartObj($scope.repoDetails);
+        $scope.searching = false;
       });
 
       var highchartObj = function (obj) {

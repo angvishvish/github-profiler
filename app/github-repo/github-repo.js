@@ -23,12 +23,14 @@ angular.module('githubApp.github-repo', [
 .controller('githubRepoCtrl', [
   '$scope', '$state', 'Github',
   function($scope, $state, Github) {
+    $scope.searching = true;
 
     Github.getRepo({
       username: $state.params.username
     })
     .$promise.then(function (data) {
       $scope.repoData = data;
+      $scope.searching = false;
     });
 
     $scope.showRepoDetails = function (reponame) {

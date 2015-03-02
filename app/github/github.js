@@ -74,7 +74,8 @@ angular.module('githubApp.github', [
   function($scope, $resource, Github, $state) {
 
     $scope.searchresult = $scope.searchresult || [];
-    $scope.requestedUsername = 'socialschools';
+
+    $scope.searching = false;
     $scope.showSearchResult = true;
     $scope.showUser = false;
     $scope.showRepoDetails = false;
@@ -82,6 +83,8 @@ angular.module('githubApp.github', [
     // search for a user
     $scope.doSearch = function() {
       $state.go('github', { });
+      $scope.searching = true;
+
       Github.searchUser({
         q: $scope.requestedUsername
       })
@@ -90,6 +93,7 @@ angular.module('githubApp.github', [
         $scope.showSearchResult = true;
         $scope.showUser = false;
         $scope.showRepo = false;
+        $scope.searching = false;
         $scope.showRepoDetails = false;
       }, function (error) {
         $scope.errorfound = error;
@@ -98,9 +102,9 @@ angular.module('githubApp.github', [
 
     // shows all the repo for a particular user
     $scope.showUserDetails = function (username) {
-      $state.go('github.user', { username: username });
       $scope.showSearchResult = false;
       $scope.showUser = true;
+      $state.go('github.user', { username: username });
     };
 }])
 

@@ -4,6 +4,7 @@
      class="list-group-item active"
      ng-click="showRepo(requestedUsername)">
      Show Repository
+     <i class="fa fa-circle-o-notch fa-spin pull-right" ng-if="searching"></i>
      <span class="badge"
            ng-if="repoData">
            Total projects - {{ repoData.length }}

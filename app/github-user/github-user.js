@@ -32,6 +32,7 @@ angular.module('githubApp.github-user', [
   '$scope', '$state', 'Github',
   function ($scope, $state, Github) {
     $scope.showRepo = false;
+    $scope.searching = true;
 
     Github.getuser({
       username: $state.params.username
@@ -39,6 +40,7 @@ angular.module('githubApp.github-user', [
     .$promise.then(function (data) {
       $scope.userData = data;
       $scope.showUser = true;
+      $scope.searching = false;
     }, function (error) {
       $scope.errorfound = error;
     });
