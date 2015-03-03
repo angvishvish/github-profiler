@@ -1,8 +1,8 @@
 <div class="list-group" ng-if="showSearchResult">
   <a href="" class="list-group-item active">
     Search {{ requestedUsername }}
+    <i class="fa fa-spinner fa-pulse" ng-if="searching"></i>
     <span class="badge">
-      <i class="fa fa-circle-o-notch fa-spin pull-right" ng-if="searching"></i>
       {{ searchresult.total_count }}
     </span>
   </a>

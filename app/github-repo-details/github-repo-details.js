@@ -26,6 +26,7 @@ angular.module('githubApp.github-repo-details', [
       $scope.repoDetails = $scope.repoDetails || {};
       $scope.reponame = $state.params.reponame;
       $scope.searching = true;
+      $scope.noLanguage = '';
 
       Github.getRepoDetails({
         owner: $state.params.username,
@@ -48,7 +49,12 @@ angular.module('githubApp.github-repo-details', [
         }
 
         // show chart when we have an array
-        showRepoLang(lang_arr);
+        if (lang_arr.length) {
+          showRepoLang(lang_arr);
+        } else {
+          $scope.noLanguage = "No language found";
+        }
+
       };
 
     }
