@@ -11,37 +11,41 @@ module.exports = function(grunt) {
           'bower_components/angular-resource/angular-resource.js',
           'bower_components/angular-bootstrap/ui-bootstrap.js',
           'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-          'assets/jquery.js',
-          'assets/highcharts.js',
-          'assets/highcharts-exporting.js',
+          'assets/js/jquery.js',
+          'assets/js/highcharts.js',
+          'assets/js/highcharts-exporting.js',
           'app.js',
           'github/github.js',
           'github-user/github-user.js',
           'github-repo/github-repo.js',
           'github-repo-details/github-repo-details.js',
-          'repo-language.js'
+          'github-repo-details/repo-language.js'
         ],
-        dest: 'github-viewer.add.js'
+        dest: 'assets/js/github-viewer.add.js'
       }
     },
     uglify: {
       dist: {
         files: {
-          'github-viewer.min.js': [
-            'github-viewer.add.js'
+          'assets/js/github-viewer.min.js': [
+            'assets/js/github-viewer.add.js'
           ]
         }
       }
     },
     less: {
       debug: {
-        src: 'app.less',
-        dest: 'styles.css'
+        src: [
+          'bower_components/html5-boilerplate/css/normalize.css',
+          'bower_components/components-font-awesome/less/font-awesome.less',
+          'app.less'
+        ],
+        dest: 'assets/css/styles.css'
       }
     },
     cssmin: {
-      'styles.css': [
-        'styles.css'
+      'assets/css/styles.css': [
+        'assets/css/styles.css'
       ]
     },
   });
@@ -52,5 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.registerTask('default', ['concat', 'uglify', 'less', 'cssmin']);
+  grunt.registerTask('js', ['concat', 'uglify']);
+  grunt.registerTask('css', ['less', 'cssmin']);
 };
