@@ -107,7 +107,7 @@ angular.module('githubApp.github', [
       $scope.showUser = true;
 
       $state.go('github.user', { username: username });
-      console.log($state.params.name);
+
       Github.getuser({
         username: username
       })
