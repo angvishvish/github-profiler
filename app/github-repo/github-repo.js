@@ -39,6 +39,12 @@ angular.module('githubApp.github-repo', [
       $scope.showRepo = false;
     };
 
+    $scope.gotoUser = function (reponame) {
+      $state.go('^', { reponame: reponame });
+      $scope.showUser = true;
+      console.log($scope.showUser);
+    };
+
   }
 ]);
 

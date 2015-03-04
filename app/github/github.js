@@ -16,6 +16,7 @@ angular.module('githubApp.github', [
   '$resource',
   function ($resource) {
     var apiURL = 'https://api.github.com';
+    // Enter your access token here
     var accessToken = '--';
     var config = {
       searchUser: {
@@ -106,7 +107,7 @@ angular.module('githubApp.github', [
       $scope.showUser = true;
 
       $state.go('github.user', { username: username });
-      console.log($state.params.name);
+
       Github.getuser({
         username: username
       })

@@ -31,7 +31,7 @@ angular.module('githubApp.github-user', [
 .controller('githubUserCtrl', [
   '$scope', '$state', 'Github',
   function ($scope, $state, Github) {
-    $scope.showSearchResult = false;
+    $scope.showSearchResult = true;
     $scope.showRepo = false;
     $scope.searching = true;
 

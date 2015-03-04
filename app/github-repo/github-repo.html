@@ -2,9 +2,10 @@
 
   <a href=""
      class="list-group-item active"
-     ng-click="showUserDetails(gotouser)">
-     <i class="fa fa-arrow-left"></i> Back
-     <i class="fa fa-circle-o-notch fa-spin pull-right" ng-if="searching"></i>
+     ng-click="gotoUser(gotouser)">
+     <!-- <i class="fa fa-arrow-left"></i> Back -->
+     Shows the list of projects
+     <i class="fa fa-spinner fa-pulse" ng-if="searching"></i>
      <span class="badge"
            ng-if="repoData">
            Total projects - {{ repoData.length }}

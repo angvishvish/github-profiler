@@ -1,7 +1,11 @@
 <div class="list-groups">
   <a href="" class="list-group-item active">
     Language used in - {{ reponame }}
-    <i class="fa fa-circle-o-notch fa-spin pull-right" ng-if="searching"></i>
+    <i class="fa fa-spinner fa-pulse" ng-if="searching"></i>
+  </a>
+  <a href="" class="list-group-item"
+      ng-if="noLanguage">
+      {{ noLanguage }}
   </a>
   <a href="">
     <div class="show-repo-lang" ng-if="showRepoDetails"></div>
