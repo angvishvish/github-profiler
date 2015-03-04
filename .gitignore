@@ -1,2 +1,3 @@
 # os generated files
 *.DS_Store
+/bower_components
