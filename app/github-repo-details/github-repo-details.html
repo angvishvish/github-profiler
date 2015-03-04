@@ -1,0 +1,18 @@
+<div class="list-groups">
+  <a href="" class="list-group-item active">
+    Language used in - {{ reponame }}
+    <i class="fa fa-spinner fa-pulse" ng-if="searching"></i>
+  </a>
+  <a href="" class="list-group-item"
+      ng-if="noLanguage">
+      {{ noLanguage }}
+  </a>
+  <a href="">
+    <div class="show-repo-lang" ng-if="showRepoDetails"></div>
+  </a>
+  <a href=""
+    class="list-group-item"
+    ng-repeat="(key, value) in repoDetails">
+    {{ key }} <span class="badge">{{ value }} - bytes</span>
+  </a>
+</div>

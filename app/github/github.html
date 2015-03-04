@@ -1,0 +1,24 @@
+<div class="jumbotron">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="alert alert-danger" ng-show="errorfound">
+          <em>{{ errorfound.statusText }}</em>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <searchbox></searchbox>
+      </div>
+
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <searchresult></searchresult>
+        <div ui-view></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
