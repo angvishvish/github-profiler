@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
         src: [
@@ -17,18 +16,20 @@ module.exports = function(grunt) {
           'assets/highcharts-exporting.js',
           'app.js',
           'github/github.js',
-          'github/github-user.js',
-          'github/github-repo.js',
-          'github/github-repo-details.js',
+          'github-user/github-user.js',
+          'github-repo/github-repo.js',
+          'github-repo-details/github-repo-details.js',
           'repo-language.js'
         ],
-        dest: 'app/<%= pkg.name %>.add.js'
+        dest: 'github-viewer.add.js'
       }
     },
     uglify: {
       dist: {
         files: {
-          'github-viewer.min.js': ['<%= concat.dist.dest %>']
+          'github-viewer.min.js': [
+            'github-viewer.add.js'
+          ]
         }
       }
     },
