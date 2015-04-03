@@ -1,3 +1,4 @@
 # os generated files
 *.DS_Store
-/node_modules
+node_modules
+bower_components
