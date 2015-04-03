@@ -1,0 +1,27 @@
+// mixins for paddings
+
+@mixin add-padding-lr ($grid-gutter) {
+  padding-left:     $grid-gutter;
+  padding-right:  $grid-gutter;
+}
+
+@mixin add-padding-tb ($grid-gutter) {
+  padding-top:     $grid-gutter;
+  padding-bottom:  $grid-gutter;
+}
+
+@mixin add-padding-left ($grid-gutter) {
+  padding-left:    $grid-gutter;
+}
+
+@mixin add-padding-right ($grid-gutter) {
+  padding-right:   $grid-gutter;
+}
+
+@mixin add-padding-top ($grid-gutter) {
+  padding-top:     $grid-gutter;
+}
+
+@mixin add-padding-bottom ($grid-gutter) {
+  padding-bottom:   $grid-gutter;
+}

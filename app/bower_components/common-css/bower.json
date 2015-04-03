@@ -1,0 +1,29 @@
+{
+  "name": "common-css",
+  "version": "0.0.1",
+  "homepage": "https://github.com/angvishvish/common-css",
+  "authors": [
+    "angvishvish <angvish@promobitech.com>"
+  ],
+  "description": "A list of css that is commonly required has been written in sass and less",
+  "keywords": [
+    "css",
+    "less",
+    "sass",
+    "scss",
+    "mixin",
+    "functions"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "bootstrap-sass": "~3.3.4"
+  }
+}

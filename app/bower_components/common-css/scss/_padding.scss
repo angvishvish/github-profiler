@@ -1,0 +1,45 @@
+// remove padding
+.remove-padding {
+  padding: 0;
+}
+
+.remove-padding-lr {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.remove-padding-tb {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+// add padding
+.add-padding-lr {
+  padding-left: $grid-gutter-width / 2;
+  padding-right: $grid-gutter-width / 2;
+}
+
+.add-padding-lr {
+  @include add-padding-lr ($grid-gutter);
+}
+
+.add-padding-tb {
+  @include add-padding-tb ($grid-gutter);
+}
+
+.add-padding-left {
+  @include add-padding-left ($grid-gutter);
+}
+
+.add-padding-right {
+  @include add-padding-right ($grid-gutter);
+}
+
+.add-padding-top {
+  @include add-padding-top ($grid-gutter);
+}
+
+.add-padding-bottom {
+  @include add-padding-bottom ($grid-gutter);
+}
